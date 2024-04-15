@@ -28,7 +28,6 @@ typedef struct _linkedlist
 
 // You should not change the prototype of this function
 int moveMaxToFront(ListNode **ptrHead);
-
 void printList(LinkedList *ll);
 void removeAllItems(LinkedList *ll);
 ListNode * findNode(LinkedList *ll, int index);
@@ -88,7 +87,23 @@ int main()
 
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+    ListNode *cur, *pre, *front, *max;
+    pre = *ptrHead;
+    cur = pre->next;
+    max = *ptrHead;
+    while (cur != NULL)
+    {
+        if (cur->item > max->item){
+            max = cur;
+            front = pre;
+        }
+        pre = cur;
+        cur = cur->next;
+    }
+    front->next = max->next;
+    max->next = *ptrHead;
+    *ptrHead = max;
+    return max->item;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

@@ -102,7 +102,33 @@ int main()
 
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
-	/* add your code here */
+	ListNode *cur, *prev;
+	cur = ll->head;
+	int num;
+	int i = 0;
+
+	// if(ll = NULL){
+	// 	return -1;
+	// }
+
+	// 중간 노드num 찾기
+	if(ll->size % 2 ==0){
+		num = ll->size/2;
+	}
+	else{
+		num = ll->size/2 +1;
+	}
+	// 중간 노드 찾기
+	for(int i; i<=num; i++){
+		prev = cur;
+		cur = cur->next;
+	}
+	// backlist 만들기
+	resultFrontList->head = ll->head;
+	ll->head = NULL;
+	resultBackList->head = cur;
+	prev->next = NULL;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

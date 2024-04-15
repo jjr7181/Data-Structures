@@ -111,8 +111,21 @@ int main()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 void reverse(Queue *q)
-{
-/* add your code here */
+{ 
+	ListNode *cur = q->ll.head;
+	Stack *s = malloc(sizeof(s));
+	
+	while(cur != NULL){
+		push(s, cur->item);
+		cur = cur->next;
+	}
+
+	cur = q->ll.head;
+	while (s->ll.head != NULL){
+		int num2 = pop(s);
+		cur->item = num2;
+		cur = cur->next;
+	}	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

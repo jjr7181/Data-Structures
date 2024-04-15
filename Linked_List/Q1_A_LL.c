@@ -90,7 +90,40 @@ int main()
 
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+	if (ll == NULL)
+		return -1;
+
+	ListNode *pre = NULL;
+	ListNode *cur = ll->head;
+
+	while (cur != NULL && cur->item < item) {
+        pre = cur;
+        cur = cur->next;
+    }	
+
+	if (cur != NULL && cur->item == item)
+        return -1;	
+
+	ListNode *newNode = malloc(sizeof(ListNode));
+  if (newNode == NULL) // Check if memory allocation failed
+    return -1;
+
+  newNode->item = item;
+  newNode->next = NULL;
+
+    // Insert the new node into the list
+  if (pre == NULL) {
+      // Inserting at the beginning of the list
+      newNode->next = ll->head;
+      ll->head = newNode;
+  } else {
+        // Inserting somewhere in the middle or at the end of the list
+      newNode->next = pre->next;
+      pre->next = newNode;
+  }
+
+  ll->size++; // Update the size of the list
+  return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
