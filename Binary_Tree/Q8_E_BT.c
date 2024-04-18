@@ -101,8 +101,31 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int hasGreatGrandchild(BTNode *node)
-{
-	/* add your code here */
+{// depth = 3 이면 해당 Node item return하고 depth 초기화!
+    int depth = 0;
+
+    if(node == NULL){
+        return depth-1;
+    }
+    else {
+        int left = hasGreatGrandchild(node->left);
+        left++;
+        int right = hasGreatGrandchild(node->right);
+        right++;
+        
+        if(left > right){
+            depth = left;
+        } else {
+            depth = right;
+        }      
+    }
+
+    if (depth >= 3){
+        printf("%d ", node->item);
+        printf("\n");
+        return 0;
+    }
+    return depth;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
